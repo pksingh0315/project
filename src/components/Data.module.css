@@ -10,3 +10,75 @@
 p:hover{
     cursor: pointer;
 }
+
+.main{
+    margin-top: 20px;
+    width: 80%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+}
+.button{
+    width: 90%;
+    margin: 5px;
+}
+.width{
+    width: 100%;
+}
+.second{
+    width: 90%;
+    margin: auto;
+    height: 400px;
+    justify-content: space-between;
+}
+
+.name{
+    display: flex;
+    justify-content: space-between;
+
+}
+.level{
+    display: flex;
+    border: 1px solid red;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 40px;
+
+}
+.abilities1{
+    font-style: oblique;
+}
+.abilities2{
+    display: flex;border: 1px solid red;
+}
+.abilities3{
+    display: flex;
+    justify-content: space-around;
+}
+.abilities4{
+    width: 50%;
+    text-align: center;
+}
+.attacks1{
+    font-style: oblique;
+}
+.attacks2{
+    display: flex;
+    border: 1px solid red;
+    justify-content: space-around;
+}
+.homepagebutton{
+width: 80%;
+height: 50px;
+background-color: green;
+color: white;
+margin-left: 55px;
+}
+.imagediv{
+    width: 40%;
+}
+.image{
+    width: 100%;
+}
+.uplavel{
+    width: 70%;
+}

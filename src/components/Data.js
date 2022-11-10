@@ -1,19 +1,18 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import classes from './Data.module.css'
+import style from './Data.module.css'
 import { Link } from 'react-router-dom'
-import SecondPage from './SecondPage'
 import { Context } from './Context'
 const Data = (props) => {
     console.log(props)
     const [movies,setMovies]=useState([])
-    const [isLoading,setIsLoading]=useState(false)
-    const [error,setError]=useState(null)
+    const [loading,setloading]=useState(false)
+    const [error,seterror]=useState(false)
     const {handleadd}=useContext(Context)
   
    let url='https://api.pokemontcg.io/v2/cards?page=1&pageSize=100'
     const fetchData= useCallback(async()=>{
-      setIsLoading(true)
-      setError(null)
+      setloading(true)
+      seterror(false)
       try{
         let response=await fetch(url)
         if(!response.ok){
@@ -23,52 +22,42 @@ const Data = (props) => {
       
         const pokemonList=pokmonData.data
       
-        
+        setloading(false)
+        seterror(false)
         setMovies(pokemonList)
         
-         //console.log(movieList)
       }catch(Error){
-        setError(Error.message)
+        seterror(true)
+        setloading(false)
       }
-      setIsLoading(false)
+      setloading(false)
     }, [url])
   
     useEffect(()=>{fetchData()},[fetchData])
 
-    const addSecondPage=(item)=>{
-        console.log(item)
-        props.x(item)
-    }
-  //****************** */
-    let content=<p>No Data Found</p>
-  
-    if(error){
-      content=<p>{error}</p>
-    }
-    if(isLoading){
-      content=<p>Loading...</p>
-    }
-    if(movies.length>0){
     
-   
     
-  }
+
   return (
     <>
        
-        <div className={classes.itemList}>
+        <div className={style.itemList}>
+
+            {loading && <div>...loading</div>}
+            {error && <div>...error</div>}
             {movies.map((ele,index)=>{
-                // console.log(ele)
                 return(
-                    <div key={index} style={{width:"80%",marginTop:20}} >
-                        <img style={{width:"100%"}} src={ele.images.small} alt="error"/>
+                    <div key={index} className={style.main} >
+                        <img className={style.width} src={ele.images.small} alt="error"/>
 
                         <div>
-
-                        <button style={{width:"90%",margin:5}} onClick={()=>handleadd(ele)}> <Link to="/second">
+                       
+                        <Link to="/second">
+                        <button className={style.button}  onClick={()=>handleadd(ele)}> 
                         {ele.name}
                            
-                        </Link></button>
+                        </button>
+                        </Link>
                         </div>
                        
                         
@@ -76,7 +65,6 @@ const Data = (props) => {
                 )
         })}
         </div>
-        {/* <SecondPage lll={data}/> */}
     </>
   )
 }
